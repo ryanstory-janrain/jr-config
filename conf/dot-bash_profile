@@ -1,6 +1,13 @@
-#!/bin/bash
+# install rbenv:
+# brew install rbenv
+# rbenv install 1.9.3
+# rbenv install 1.9.3-p recent
+# rbenv global 1.9.3-p recent
 
-export PATH="$PATH:/PATH/TO/jr-config/build/bin:/PATH/TO/jr-config/bin"
+# install virtualenvwrapper:
+# sudo pip install virtualenvwrapper
+
+export PATH="$HOME/.rbenv/shims:/usr/local/bin:/usr/local/sbin:$PATH:/Users/ryan/git/jr-config/build/bin:/Users/ryan/git/jr-config/bin"
 
 git_subdir() {
     BASE=$(git rev-parse --show-toplevel 2>/dev/null)
@@ -42,6 +49,13 @@ jobs_sum() {
 
 alias j=jobs
 alias dash="apid-cli -c dashboard-metadata"
+
+. "$HOME/.aws-env/janrain-prod"
+export AWS_KEY_PAIR_NAME="rstory"
+
+export WORKON_HOME=$HOME/.venv
+. /usr/local/bin/virtualenvwrapper.sh
+workon main
 
 . $(brew --prefix)/etc/bash_completion
 . $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
